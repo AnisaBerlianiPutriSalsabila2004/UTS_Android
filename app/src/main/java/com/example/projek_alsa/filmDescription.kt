@@ -3,6 +3,7 @@ package com.example.projek_alsa
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.projek_alsa.databinding.ActivityFilmDescriptionBinding
 
 class filmDescription : AppCompatActivity() {
@@ -33,8 +34,8 @@ class filmDescription : AppCompatActivity() {
             buyBtn.setOnClickListener {
                 val intentPayment = Intent(this@filmDescription, payment::class.java)
                 if (film != null) {
-                    intentPayment.putExtra(judul_film, film.name)
-                    intentPayment.putExtra(gambar, film.bg_img)
+                    intentPayment.putExtra("film", film)
+                    Toast.makeText(this@filmDescription, "${film.name}", Toast.LENGTH_SHORT).show()
                     startActivity(intentPayment)
                 }
             }

@@ -12,19 +12,23 @@ class summary : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val judul = intent.getStringExtra(payment.film_name)
-        val image = intent.getStringExtra(payment.image_url)
+        var film = intent.getParcelableExtra<film>("film")
         val bioskop = intent.getStringExtra(payment.cinema)
         val seat = intent.getStringExtra(payment.ticketType)
+        val tanggal = intent.getStringExtra(payment.tanggal)
         val harga = intent.getStringExtra(payment.price)
         val payment = intent.getStringExtra(payment.paymentMethod)
         val bank = intent.getStringExtra(com.example.projek_alsa.payment.bank)
 
         with(binding){
-            judulTxt.text = judul
-            if (image != null) {
-                imgs.setImageResource(image.toInt())
+
+
+            if (film != null) {
+                judulTxt.text = film.name
+                imgs.setImageResource(film.bg_img)
             }
+
+            tanggalTxt.text = tanggal
             cinemaTxt.text = bioskop
             SEAT.text = seat
             PRICE.text = harga

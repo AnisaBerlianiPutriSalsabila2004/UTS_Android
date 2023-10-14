@@ -10,9 +10,9 @@ class loginPage : AppCompatActivity() {
     private lateinit var binding:ActivityLoginPageBinding
 
     companion object{
-        var usernames = ""
-        val names = ""
-        var passwords = ""
+        var usernames = "usernames"
+        val names = "names"
+        var passwords = "passwords"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginPageBinding.inflate(layoutInflater)

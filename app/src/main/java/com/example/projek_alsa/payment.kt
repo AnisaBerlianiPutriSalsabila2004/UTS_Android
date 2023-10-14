@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.view.marginBottom
 import com.example.projek_alsa.databinding.ActivityPaymentBinding
@@ -128,16 +129,26 @@ class payment : AppCompatActivity() {
             }
         }
 
-        var judul = intent.getStringExtra(filmDescription.judul_film)
-        var images = intent.getStringExtra(filmDescription.gambar)
-
         with(binding){
+
+            var film = intent.getParcelableExtra<film>("film")
+
+            datePicker.init(
+                datePicker.year,
+                datePicker.month,
+                datePicker.dayOfMonth
+            ) { _, year, monthOfYear, dayOfMonth ->
+                val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+                tanggal = selectedDate
+            }
+
+
             buttonSubmit.setOnClickListener{
                 val intentEnd = Intent(this@payment, summary::class.java)
-                intentEnd.putExtra(film_name, judul)
-                intentEnd.putExtra(image_url, images)
+                intentEnd.putExtra("film", film)
                 intentEnd.putExtra(cinema, cinema)
                 intentEnd.putExtra(ticketType, ticketType)
+                intentEnd.putExtra(tanggal, tanggal)
                 intentEnd.putExtra(price, price)
                 intentEnd.putExtra(paymentMethod, paymentMethod)
                 if(paymentMethod != "Cash"){
